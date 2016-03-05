@@ -1,0 +1,8 @@
+*.suo
+*proj.user
+/src/*/bin/*
+/src/*/obj/*
+/src/XigniteAnalysts.Web/bin/*
+*.Cache
+/src/packages/*
+!/src/packages/repositories.config

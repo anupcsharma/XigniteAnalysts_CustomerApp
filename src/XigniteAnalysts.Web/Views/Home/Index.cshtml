@@ -1,0 +1,164 @@
+﻿@model XigniteAnalysts.Web.ViewModels.ResearchFieldListViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="../../favicon.ico">
+	<title>Xignite Analysts</title>
+	<!-- Bootstrap core CSS -->
+	<link href="../../Content/bootstrap.min.css" rel="stylesheet">
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<link href="../../Content/ie10-viewport-bug-workaround.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="../../Content/dashboard.css" rel="stylesheet">
+	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	<script src="../../Content/js/ie-emulation-modes-warning.js"></script>
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Xignite Analysts</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Dashboard</a></li>
+					@*<li><a href="#">Settings</a></li>
+						<li><a href="#">Profile</a></li>
+						<li><a href="#">Help</a></li>*@
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+					@*<li><a href="#">Reports</a></li>
+						<li><a href="#">Analytics</a></li>*@
+					@*<li><a href="#">Export</a></li>*@
+				</ul>
+				
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h1 class="page-header">Dashboard</h1>
+				<div class="row placeholders">
+					@using (Html.BeginForm())
+					{
+						<div align="left">
+							@Html.Label("Identifier: ")
+							@Html.TextBox("identifier")
+							@Html.ValidationMessage("identifier")
+						</div>
+						<div align="left">
+							<input type="submit" id="submit" value="Submit" />
+						</div>
+					}
+
+				</div>
+				<h2 class="sub-header">Xignite Analysts - Research Fields</h2>
+				@if (Model != null)
+				{
+					<h3>Result</h3>
+					<div>
+						<span>Outcome: </span>
+					</div>
+					if (Model.AnalystsResearchFields != null && Model.AnalystsResearchFields.Count > 0)
+					{
+						<h3>Security</h3>
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>@Html.LabelFor(model => model.Security.Symbol)</th>
+										<th>@Html.LabelFor(model => model.Security.Name)</th>
+										<th>@Html.LabelFor(model => model.Security.CategoryOrIndustry)</th>
+										<th>@Html.LabelFor(model => model.Security.Cusip)</th>
+										<th>@Html.LabelFor(model => model.Security.CIK)</th>
+										<th>@Html.LabelFor(model => model.Security.ISIN)</th>
+										<th>@Html.LabelFor(model => model.Security.Market)</th>
+										<th>@Html.LabelFor(model => model.Security.Valoren)</th>
+										<th>@Html.LabelFor(model => model.Security.Outcome)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>@Model.Security.Symbol</td>
+										<td>@Model.Security.Name</td>
+										<td>@Model.Security.CategoryOrIndustry</td>
+										<td>@Model.Security.Cusip</td>
+										<td>@Model.Security.CIK</td>
+										<td>@Model.Security.ISIN</td>
+										<td>@Model.Security.Market</td>
+										<td>@Model.Security.Valoren</td>
+										<td>@Model.Security.Outcome</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+						<h3>Analysts Research Fields</h3>
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>@Html.LabelFor(model => model.AnalystsResearchFields[0].Description)</th>
+										<th>@Html.LabelFor(model => model.AnalystsResearchFields[0].Value)</th>
+										<th>@Html.LabelFor(model => model.AnalystsResearchFields[0].DataType)</th>
+										<th>@Html.LabelFor(model => model.AnalystsResearchFields[0].DataFormat)</th>
+										<th>@Html.LabelFor(model => model.AnalystsResearchFields[0].DataSource)</th>
+										<th>@Html.LabelFor(model => model.AnalystsResearchFields[0].FieldType)</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in Model.AnalystsResearchFields)
+									{
+										<tr>
+											<td>@item.Description</td>
+											<td>@item.Value</td>
+											<td>@item.DataType</td>
+											<td>@item.DataFormat</td>
+											<td>@item.DataSource</td>
+											<td>@item.FieldType</td>
+										</tr>
+									}
+
+								</tbody>
+							</table>
+						</div>
+					}
+				}
+				
+			</div>
+		</div>
+	</div>
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	<script src="../../Content/dist/js/bootstrap.min.js"></script>
+	
+</body>
+</html>
