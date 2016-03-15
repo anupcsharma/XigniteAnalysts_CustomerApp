@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.ServiceModel;
-using System.Threading;
-using System.Threading.Tasks;
-using XigniteAnalysts.Api.Config;
 using XigniteAnalysts.Api.Exceptions;
-using XigniteAnalysts.Api.Requests;
 using XigniteAnalysts.Api.Responses;
 using XigniteAnalysts.Api.XigniteAnalystsServiceReference;
 
@@ -30,9 +25,7 @@ namespace XigniteAnalysts.Api
 			TResponse response = null;
 			try
 			{
-				ProcessRequest<TRequest>(request);
 				response = handler(client);
-
 				
 				var responseDetail = response as IResponseDetail;
 				if (responseDetail != null)
@@ -60,35 +53,12 @@ namespace XigniteAnalysts.Api
 			return response;
 		}
 
-		private static void GetResponseCallBack(IAsyncResult ar)
-		{
-			throw new NotImplementedException();
-		}
-
+		
 		private static void ProcessResponse(IResponseDetail response)
 		{
 			if ((response.Outcome == OutcomeTypes.Success)) return;
 			var methodName = new StackTrace(2, false).GetFrame(0).GetMethod().Name;
 			throw new ApiException(methodName, response.Message, response.Delay);
 		}
-
-
-		private static void ProcessRequest<TRequest>(TRequest request)
-		{
-			var validRequest = request as IValidRequest;
-			if (validRequest != null)
-			{
-				EnsureTokenExists(validRequest);
-			}
-		}
-
-		private static void EnsureTokenExists(IValidRequest request)
-		{
-			if (request != null)
-			{
-				request.ApiToken = ApiSettings.Instance.ApiToken;
-			}
-		}
-		
 	}
 }

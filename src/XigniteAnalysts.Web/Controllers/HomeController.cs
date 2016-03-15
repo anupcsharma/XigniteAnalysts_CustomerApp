@@ -31,7 +31,14 @@ namespace XigniteAnalysts.Web.Controllers
 		{
 			var viewModel = new ResearchFieldListViewModel();
 			var researchFieldLists = await XigniteAnalystsRepository.GetResearchFieldList(identifier);
-			
+
+			//if (researchFieldLists == null || researchFieldLists.GetResearchFieldListResult == null
+			//	|| researchFieldLists.GetResearchFieldListResult.AnalystsResearchFields == null)
+			//{
+			//	ViewBag.DisplayErrorMessage = String.Format("Your subscription has expired!");
+			//	return View("Index");
+			//}
+
 			viewModel = Mapper.Map<ResearchFieldListViewModel>(researchFieldLists);
 			return View(viewModel);
 		}

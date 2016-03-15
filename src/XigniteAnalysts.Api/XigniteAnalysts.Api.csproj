@@ -67,7 +67,6 @@
     <Compile Include="Repository\Interfaces\IRepository.cs" />
     <Compile Include="Repository\Interfaces\IXigniteAnalystsRepository.cs" />
     <Compile Include="Repository\XigniteAnalystsRepository.cs" />
-    <Compile Include="Requests\IValidRequest.cs" />
     <Compile Include="Responses\GetResearchFieldListResponse.cs" />
     <Compile Include="Responses\IResponseDetail.cs" />
     <Compile Include="Service References\XigniteAnalystsServiceReference\Reference.cs">

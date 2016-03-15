@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity.Core.Objects;
+using System.Reflection.Emit;
 using AutoMapper;
 using XigniteAnalysts.Api.Dtos.ResearchFieldList;
 using XigniteAnalysts.Api.XigniteAnalystsServiceReference;
@@ -15,36 +17,47 @@ namespace XigniteAnalysts.Web.MapProfiles
 		protected override void Configure()
 		{
 			CreateMap<GetResearchFieldListResponse, ResearchFieldListViewModel>()
-				//.ForMember(model => model.Security, opt => opt.MapFrom(dto => dto.GetResearchFieldListResult.Security))
-				.ForMember(model => model.Security, opt => opt.ResolveUsing(x => new SecurityDto()
+				.ForMember(model => model.Security, model => model.Ignore())
+				.AfterMap((src, dst) =>
 				{
-					Delay = x.GetResearchFieldListResult.Security.Delay,
-					CIK  = x.GetResearchFieldListResult.Security.CIK,
-					Cusip  = x.GetResearchFieldListResult.Security.Cusip,
-					Symbol = x.GetResearchFieldListResult.Security.Symbol,
-					ISIN = x.GetResearchFieldListResult.Security.ISIN,
-					Valoren = x.GetResearchFieldListResult.Security.Valoren,
-					Name = x.GetResearchFieldListResult.Security.Name,
-					Market = x.GetResearchFieldListResult.Security.Market,
-					CategoryOrIndustry = x.GetResearchFieldListResult.Security.CategoryOrIndustry,
-					Outcome = (OutcomeTypes) x.GetResearchFieldListResult.Security.Outcome
-					
-				}))
-				//.IgnoreAllUnmapped()
-				//.AfterMap(MapAnalystsResearchFieldList)
-				.ForMember(model => model.AnalystsResearchFields, opt => opt.ResolveUsing(ResearchFieldListValuesResolver))
-				;
-				//.IgnoreAllUnmapped()
-				//.ForMember(model => model.Security, opt => opt.MapFrom(dto => dto.GetResearchFieldListResult.Security))
-				//.ForMember(model => model.AnalystsResearchFields, opt => opt.MapFrom(dto => dto.GetResearchFieldListResult.AnalystsResearchFields))
-				
+					if (src.GetResearchFieldListResult.Security != null)
+						dst.Security = MapSecurity(src.GetResearchFieldListResult.Security);
+				})
+				.ForMember(model => model.AnalystsResearchFields, model => model.Ignore())
+				.AfterMap((src, dst) =>
+				{
+					if (src.GetResearchFieldListResult.AnalystsResearchFields != null)
+						dst.AnalystsResearchFields = MapAnalystsResearchFieldList(src.GetResearchFieldListResult.AnalystsResearchFields);
+				})
+				.ForMember(model => model.Delay, opt => opt.MapFrom(dto => dto.GetResearchFieldListResult.Delay))
+				.ForMember(model => model.Identity, opt => opt.MapFrom(dto => dto.GetResearchFieldListResult.Identity))
+				.ForMember(model => model.Message, opt => opt.MapFrom(dto => dto.GetResearchFieldListResult.Message))
+				.ForMember(model => model.Outcome, opt => opt.MapFrom(dto => dto.GetResearchFieldListResult.Outcome))
 				;
 		}
 
-		private static List<AnalystsResearchFieldDto> ResearchFieldListValuesResolver(GetResearchFieldListResponse dto)
+		private SecurityDto MapSecurity(Security security)
+		{
+			return new SecurityDto
+			{
+				Delay = security.Delay,
+				CIK = security.CIK,
+				Cusip = security.Cusip,
+				Symbol = security.Symbol,
+				ISIN = security.ISIN,
+				Valoren = security.Valoren,
+				Name = security.Name,
+				Market = security.Market,
+				CategoryOrIndustry = security.CategoryOrIndustry,
+				Outcome = (OutcomeTypes)security.Outcome
+			};
+		}
+
+		
+		private List<AnalystsResearchFieldDto> MapAnalystsResearchFieldList(IEnumerable<AnalystsResearchField> dto)
 		{
 			var analystsResearchFieldList = new List<AnalystsResearchFieldDto>();
-			foreach (var item in dto.GetResearchFieldListResult.AnalystsResearchFields)
+			foreach (var item in dto)
 			{
 				var analystsResearchField = new AnalystsResearchFieldDto();
 				analystsResearchField.DataFormat = item.DataFormat;
@@ -56,22 +69,6 @@ namespace XigniteAnalysts.Web.MapProfiles
 				analystsResearchFieldList.Add(analystsResearchField);
 			}
 			return analystsResearchFieldList;
-		}
-
-		private void MapAnalystsResearchFieldList(GetResearchFieldListResponse dto, ResearchFieldListViewModel model)
-		{
-			var analystsResearchFieldList = new List<AnalystsResearchFieldDto>();
-			foreach (var item in dto.GetResearchFieldListResult.AnalystsResearchFields)
-			{
-				var analystsResearchField = new AnalystsResearchFieldDto();
-				analystsResearchField.DataFormat = item.DataFormat;
-				analystsResearchField.DataSource = item.DataSource;
-				analystsResearchField.DataType = item.DataType;
-				analystsResearchField.Description = item.Description;
-				analystsResearchField.Value = item.Value;
-				analystsResearchField.FieldType = (AnalystFieldTypes) item.FieldType;
-				analystsResearchFieldList.Add(analystsResearchField);
-			}
 		}
 	}
 }

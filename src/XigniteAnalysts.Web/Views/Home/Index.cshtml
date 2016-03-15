@@ -68,7 +68,7 @@
 					{
 						<div align="left">
 							@Html.Label("Identifier: ")
-							@Html.TextBox("identifier")
+							@Html.TextBox("identifier", "MSFT")
 							@Html.ValidationMessage("identifier")
 						</div>
 						<div align="left">
@@ -77,15 +77,19 @@
 					}
 
 				</div>
-				<h2 class="sub-header">Xignite Analysts - Research Fields</h2>
+				<div>@ViewBag.DisplayErrorMessage</div>
 				@if (Model != null)
 				{
 					<h3>Result</h3>
 					<div>
-						<span>Outcome: </span>
+						<div><strong>Outcome:</strong> @Model.Outcome</div>
+						<div><strong>Delay:</strong> @Model.Delay</div>
+						<div><strong>Identity:</strong> @Model.Identity</div>
+						<div><strong>Message:</strong> @Model.Message</div>
 					</div>
 					if (Model.AnalystsResearchFields != null && Model.AnalystsResearchFields.Count > 0)
 					{
+						<h3 class="sub-header">Xignite Analysts - Research Fields</h3>
 						<h3>Security</h3>
 						<div class="table-responsive">
 							<table class="table table-striped">

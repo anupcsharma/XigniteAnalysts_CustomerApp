@@ -9,8 +9,4 @@ namespace XigniteAnalysts.Api.XigniteAnalystsServiceReference
 	public partial class GetResearchFieldListRequest
 	{
 	}
-
-	//public partial class GetResearchFieldListResponse : Response
-	//{
-	//}
 }
