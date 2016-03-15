@@ -157,8 +157,13 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
-    <Reference Include="XigniteAnalysts.Api">
-      <HintPath>..\XigniteAnalysts.Api\obj\Debug\XigniteAnalysts.Api.dll</HintPath>
+    <Reference Include="XigniteAnalysts.Api, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\XigniteAnalysts.Api\bin\Debug\XigniteAnalysts.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="XigniteAnalysts.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\XigniteAnalysts.Infrastructure\bin\Debug\XigniteAnalysts.Infrastructure.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -284,12 +289,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\XigniteAnalysts.Infrastructure\XigniteAnalysts.Infrastructure.csproj">
-      <Project>{CB1FBABA-DA04-4819-869C-53DA1DE254CB}</Project>
-      <Name>XigniteAnalysts.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

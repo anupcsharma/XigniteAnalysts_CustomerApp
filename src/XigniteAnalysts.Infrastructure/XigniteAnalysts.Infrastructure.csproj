@@ -83,9 +83,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="XigniteAnalysts.Api">
-      <HintPath>..\XigniteAnalysts.Api\obj\Debug\XigniteAnalysts.Api.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfiguration.cs" />
