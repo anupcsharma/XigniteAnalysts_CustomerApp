@@ -4,10 +4,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XigniteAnalysts.Api", "XigniteAnalysts.Api\XigniteAnalysts.Api.csproj", "{EC178106-2E79-4C7B-80F7-2A4E4A2E065B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CB1FBABA-DA04-4819-869C-53DA1DE254CB} = {CB1FBABA-DA04-4819-869C-53DA1DE254CB}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XigniteAnalysts.Infrastructure", "XigniteAnalysts.Infrastructure\XigniteAnalysts.Infrastructure.csproj", "{CB1FBABA-DA04-4819-869C-53DA1DE254CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XigniteAnalysts.Web", "XigniteAnalysts.Web\XigniteAnalysts.Web.csproj", "{48939478-BE8F-496F-9DDE-FBD8D20F46B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EC178106-2E79-4C7B-80F7-2A4E4A2E065B} = {EC178106-2E79-4C7B-80F7-2A4E4A2E065B}
+		{CB1FBABA-DA04-4819-869C-53DA1DE254CB} = {CB1FBABA-DA04-4819-869C-53DA1DE254CB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
