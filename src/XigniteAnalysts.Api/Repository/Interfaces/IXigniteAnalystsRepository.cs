@@ -4,7 +4,7 @@ using GetResearchFieldListResponse = XigniteAnalysts.Api.XigniteAnalystsServiceR
 
 namespace XigniteAnalysts.Api.Repository.Interfaces
 {
-	public interface IXigniteAnalystsRepository //: IRepository<GetResearchFieldListResponse, string>
+	public interface IXigniteAnalystsRepository 
 	{
 		Task<GetResearchFieldListResponse> GetResearchFieldList(string identifier);
 	}

@@ -2,8 +2,6 @@
 {
 	public class AnalystsResearchFieldDto
 	{
-		//public SecurityDto Security;
-
 		public AnalystFieldTypes FieldType { get; set; }
 
 		public string Description { get; set; }

@@ -57,17 +57,14 @@
     <Compile Include="ApiPartial.cs" />
     <Compile Include="ConfigSettings.cs" />
     <Compile Include="Config\ApiSettings.cs" />
-    <Compile Include="Dtos\ResearchFieldList\AnalysisGroup.cs" />
     <Compile Include="Dtos\ResearchFieldList\AnalystFieldType.cs" />
     <Compile Include="Dtos\ResearchFieldList\AnalystsResearchFieldDto.cs" />
     <Compile Include="Dtos\ResearchFieldList\SecurityDto.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrator.cs" />
-    <Compile Include="Repository\Interfaces\IRepository.cs" />
     <Compile Include="Repository\Interfaces\IXigniteAnalystsRepository.cs" />
     <Compile Include="Repository\XigniteAnalystsRepository.cs" />
-    <Compile Include="Responses\GetResearchFieldListResponse.cs" />
     <Compile Include="Responses\IResponseDetail.cs" />
     <Compile Include="Service References\XigniteAnalystsServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>

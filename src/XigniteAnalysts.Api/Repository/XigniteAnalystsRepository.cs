@@ -7,11 +7,6 @@ namespace XigniteAnalysts.Api.Repository
 {
 	public class XigniteAnalystsRepository : IXigniteAnalystsRepository
 	{
-		//public GetResearchFieldListResponse Get(string id)
-		//{
-		//	throw new System.NotImplementedException();
-		//}
-
 		public async Task<XigniteAnalystsServiceReference.GetResearchFieldListResponse> GetResearchFieldList(string identifier)
 		{
 			var request = new GetResearchFieldListRequest
